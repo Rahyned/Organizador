@@ -1,0 +1,59 @@
+[
+  {
+    "fecha_caso": "07-01-2026",
+    "nombre_caso": "JUAN",
+    "categoria": "Casos",
+    "cantidad_archivos": 12,
+    "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN",
+    "archivos_movidos": [
+      {
+        "nombre": "1080x360.jpg",
+        "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN\\1080x360.jpg"
+      },
+      {
+        "nombre": "953d21969ab5c0f57f7fee58300b2103.jpg",
+        "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN\\953d21969ab5c0f57f7fee58300b2103.jpg"
+      },
+      {
+        "nombre": "ac12cecc073c40e6fedaad944c0f04ed.jpg",
+        "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN\\ac12cecc073c40e6fedaad944c0f04ed.jpg"
+      },
+      {
+        "nombre": "cd90ef990566f97bb77b339d94fd21e9.jpg",
+        "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN\\cd90ef990566f97bb77b339d94fd21e9.jpg"
+      },
+      {
+        "nombre": "d97b9b34b24a2f35388e2c3c380ae1a4.jpg",
+        "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN\\d97b9b34b24a2f35388e2c3c380ae1a4.jpg"
+      },
+      {
+        "nombre": "dandadan.jpg",
+        "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN\\dandadan.jpg"
+      },
+      {
+        "nombre": "dandadann.jpg",
+        "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN\\dandadann.jpg"
+      },
+      {
+        "nombre": "ed0d311f201a607da034495980707f1f.jpg",
+        "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN\\ed0d311f201a607da034495980707f1f.jpg"
+      },
+      {
+        "nombre": "GpB0IUxWQAAU2MQ.jpeg",
+        "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN\\GpB0IUxWQAAU2MQ.jpeg"
+      },
+      {
+        "nombre": "ippo.jpg",
+        "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN\\ippo.jpg"
+      },
+      {
+        "nombre": "tay.jpg",
+        "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN\\tay.jpg"
+      },
+      {
+        "nombre": "w9nMYZDS_400x400.jpg",
+        "ruta_destino": "C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\\Casos\\07-01-2026_JUAN\\w9nMYZDS_400x400.jpg"
+      }
+    ]
+  }
+]
