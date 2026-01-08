@@ -16,8 +16,23 @@ class OrganizadorApp(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("Organizador de Archivos Pro - V2.0")
-        self.geometry("1100x900")
+        self.title("Organizador de Archivos")
+        
+        # --- LÓGICA PARA CENTRAR VENTANA ---
+        ancho_ventana = 1100
+        alto_ventana = 900
+        
+        # Obtener dimensiones de la pantalla
+        ancho_pantalla = self.winfo_screenwidth()
+        alto_pantalla = self.winfo_screenheight()
+        
+        # Calcular coordenadas para el centro
+        x = (ancho_pantalla // 2) - (ancho_ventana // 2)
+        y = (alto_pantalla // 2) - (alto_ventana // 2)
+        
+        # Establecer geometría centrada
+        self.geometry(f"{ancho_ventana}x{alto_ventana}+{x}+{y}")
+        # ----------------------------------
         
         # Paleta de Colores
         self.color_bg = "#1a1c1e"
@@ -258,7 +273,7 @@ class OrganizadorApp(ctk.CTk):
             with open(self.archivo_historial, "w", encoding="utf-8") as f:
                 json.dump(self.historial, f, indent=2)
 
-            messagebox.showinfo("Completado", f"El caso '{caso}' ha sido organizado correctamente.")
+            messagebox.showinfo("Completado", f"El archivo '{caso}' ha sido organizado correctamente.")
             self._actualizar_historial()
             self.entry_caso.delete(0, 'end')
         except Exception as e:
