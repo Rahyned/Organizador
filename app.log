@@ -1,3 +1,44 @@
 2026-01-07 19:54:35,742 - INFO - Configuración guardada: C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final
 2026-01-07 19:55:03,074 - INFO - Registro guardado en historial: juan
 2026-01-07 19:55:06,829 - INFO - Lote completado: 12 archivos en C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\casos\07-01-2026_juan
+2026-01-08 04:41:03,540 - ERROR - Error actualizando historial: 'timestamp'
+2026-01-08 04:41:14,307 - ERROR - Error actualizando historial: 'timestamp'
+2026-01-08 04:42:01,666 - ERROR - Error actualizando historial: 'timestamp'
+2026-01-08 04:42:37,878 - INFO - Registro guardado en historial: lautaro
+2026-01-08 04:42:37,879 - ERROR - Error actualizando historial: 'timestamp'
+2026-01-08 04:42:41,203 - INFO - Lote completado: 12 archivos en C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\casos\08-01-2026_lautaro
+2026-01-08 04:46:13,316 - INFO - Registro guardado en historial: riodent
+2026-01-08 04:46:16,598 - INFO - Lote completado: 10 archivos en C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\laboratorio/equipo\08-01-2026_riodent
+2026-01-08 04:47:18,118 - INFO - Registro guardado en historial: lautaro
+2026-01-08 04:47:18,830 - INFO - Lote completado: 12 archivos en C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\casos\08-01-2026_lautaro
+2026-01-08 04:51:20,192 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:51:20,354 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:51:20,514 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:51:20,629 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:51:20,814 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:51:28,521 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:51:28,659 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:51:28,897 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:51:28,971 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:51:29,131 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:52:27,737 - INFO - Registro guardado en historial: riodent
+2026-01-08 04:52:28,408 - INFO - Lote completado: 10 archivos en C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\casos\08-01-2026_riodent
+2026-01-08 04:52:34,830 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:52:34,969 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:52:35,234 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:52:35,331 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:52:35,420 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:52:36,551 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:52:36,712 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:52:36,771 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:52:41,789 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:52:41,845 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:52:41,859 - ERROR - Error buscando archivos: '_tkinter.tkapp' object has no attribute 'color_card'
+2026-01-08 04:55:07,072 - INFO - Registro guardado en historial: riodent
+2026-01-08 04:55:08,348 - INFO - Lote completado: 10 archivos en C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\laboratorio - equipo\08-01-2026_riodent
+2026-01-08 04:58:44,816 - INFO - Registro guardado en historial: lautaro
+2026-01-08 04:58:49,037 - INFO - Lote completado: 12 archivos en C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\casos\08-01-2026_lautaro
+2026-01-08 05:01:48,693 - INFO - Registro guardado en historial: lautaro
+2026-01-08 05:01:50,016 - INFO - Lote completado: 12 archivos en C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\casos\08-01-2026_lautaro
+2026-01-08 05:03:55,922 - INFO - Registro guardado en historial: riodent
+2026-01-08 05:03:56,794 - INFO - Lote completado: 10 archivos en C:/Users/Lau/Desktop/Prueba_Organizador/Destino_Final\laboratorio-equipo\08-01-2026_riodent
