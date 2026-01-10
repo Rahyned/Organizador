@@ -10,6 +10,17 @@ import platform
 import subprocess
 import json
 from collections import defaultdict
+import sys
+
+def ruta_recurso(relativa):
+    
+    try:
+        # PyInstaller crea una carpeta temporal y guarda la ruta en _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        # En modo desarrollo, usar la carpeta del script actual
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, relativa)
 
 # Configuración de logging
 logging.basicConfig(
@@ -29,7 +40,19 @@ class OrganizadorApp(ctk.CTk):
         # Configuración de la ventana principal
         self.title("Organizador de Archivos")
         self.geometry("900x800")
-        self.resizable(True, True)
+        
+        # Configurar ícono
+        try:
+            ruta_icono = ruta_recurso("camara.ico")
+            if os.path.exists(ruta_icono):
+                self.iconbitmap(ruta_icono)
+                logging.info(f"Icono cargado desde: {ruta_icono}")
+            else:
+                logging.warning(f"Archivo de icono no encontrado en: {ruta_icono}")
+        except Exception as e:
+            logging.error(f"Error al cargar el icono: {e}")
+        
+        self.resizable(True, True) 
         self.minsize(700, 600)
         
         # Centrar ventana en pantalla
@@ -41,6 +64,7 @@ class OrganizadorApp(ctk.CTk):
         x = (ancho_pantalla // 2) - (ancho_ventana // 2)
         y = (alto_pantalla // 2) - (alto_ventana // 2)
         self.geometry(f"{ancho_ventana}x{alto_ventana}+{x}+{y}")
+         
         
         # Colores personalizados (mate)
         self.color_primary = "#4b7a99"
@@ -445,7 +469,12 @@ class OrganizadorApp(ctk.CTk):
             messagebox.showerror("Error", "Formato de fecha inválido. Usa: DD-MM-AAAA")
             return
         
-        archivos = self._obtener_archivos(self.path_origen)
+        # Obtener archivos a mover
+        if isinstance(self.path_origen, list):
+            archivos = [os.path.basename(f) for f in self.path_origen]
+        else:
+            archivos = self._obtener_archivos(self.path_origen)
+        
         if not archivos:
             messagebox.showwarning("Advertencia", "No hay archivos en la carpeta de origen.")
             return
@@ -524,25 +553,39 @@ Cantidad de archivos a mover: {len(archivos)}
             if not os.path.exists(ruta_final):
                 os.makedirs(ruta_final)
 
-            # Mover archivos
-            for idx, archivo in enumerate(archivos):
+            # Mover archivos - maneja tanto carpetas como archivos individuales
+            if isinstance(self.path_origen, list):
+                # Archivos individuales seleccionados
+                archivos_a_mover = self.path_origen
+            else:
+                # Carpeta completa
+                archivos_a_mover = [os.path.join(self.path_origen, f) for f in archivos]
+            
+            for idx, archivo_ruta in enumerate(archivos_a_mover):
                 try:
-                    ruta_origen = os.path.join(self.path_origen, archivo)
-                    ruta_destino = os.path.join(ruta_final, archivo)
+                    nombre_archivo = os.path.basename(archivo_ruta)
+                    
+                    # Si viene de una lista, ya tiene la ruta completa
+                    if isinstance(self.path_origen, list):
+                        ruta_origen = archivo_ruta
+                    else:
+                        ruta_origen = archivo_ruta
+                    
+                    ruta_destino = os.path.join(ruta_final, nombre_archivo)
                     shutil.move(ruta_origen, ruta_destino)
                     archivos_movidos.append({
-                        "nombre": archivo,
+                        "nombre": nombre_archivo,
                         "ruta_destino": ruta_destino
                     })
                     
-                    progreso = (idx + 1) / len(archivos)
+                    progreso = (idx + 1) / len(archivos_a_mover)
                     self.progress_bar.set(progreso)
                     self.lbl_estado.configure(
-                        text=f"Moviendo: {archivo} ({idx + 1}/{len(archivos)})"
+                        text=f"Moviendo: {nombre_archivo} ({idx + 1}/{len(archivos_a_mover)})"
                     )
                     self.update()
                 except Exception as e:
-                    logging.error(f"Error al mover {archivo}: {e}")
+                    logging.error(f"Error al mover {nombre_archivo}: {e}")
 
             # Guardar en historial
             self.guardar_en_historial(
@@ -808,9 +851,17 @@ El lote ha sido registrado en el historial."""
         except ValueError:
             return False
 
-    def _obtener_archivos(self, ruta):
-        """Retorna todos los archivos (excepto carpetas) de una ruta"""
+    def _obtener_archivos(self, ruta=None):
+        """Retorna todos los archivos (excepto carpetas) de una ruta o lista de archivos"""
         try:
+            # Si path_origen es una lista de archivos individuales
+            if isinstance(self.path_origen, list):
+                return [os.path.basename(f) for f in self.path_origen]
+            
+            # Si es una carpeta
+            if ruta is None:
+                ruta = self.path_origen
+            
             archivos = os.listdir(ruta)
             archivos_validos = [
                 f for f in archivos 
@@ -878,22 +929,71 @@ El lote ha sido registrado en el historial."""
             messagebox.showwarning("Atención", "Primero debes configurar la carpeta de destino.")
 
     def seleccionar_origen(self):
-        """Selecciona la carpeta donde están los archivos"""
-        ruta = filedialog.askdirectory(
-            title="Selecciona la carpeta con los archivos"
-        )
-        if ruta:
-            self.path_origen = ruta
-            nombre_carpeta = os.path.basename(ruta)
-            archivos = self._obtener_archivos(ruta)
-            
-            self.lbl_origen.configure(
-                text=f"✓ {nombre_carpeta}", 
-                text_color=self.color_success
-            )
-            self.lbl_contador.configure(
-                text=f"{len(archivos)} archivo(s) encontrado(s)"
-            )
+        """Selecciona la carpeta o archivos individuales"""
+        from tkinter import Toplevel
+        
+        ventana_seleccion = Toplevel(self)
+        ventana_seleccion.title("Seleccionar Origen")
+        ventana_seleccion.geometry("400x200")
+        ventana_seleccion.resizable(False, False)
+        ventana_seleccion.attributes('-topmost', True)
+        
+        try:
+            ruta_icono = ruta_recurso("camara.ico")
+            if os.path.exists(ruta_icono):
+                ventana_seleccion.iconbitmap(default=ruta_icono)
+        except Exception as e:
+            logging.error(f"Error al cargar icono en ventana emergente: {e}")
+        
+        ventana_seleccion.update_idletasks()
+        x = (ventana_seleccion.winfo_screenwidth() // 2) - (400 // 2)
+        y = (ventana_seleccion.winfo_screenheight() // 2) - (200 // 2)
+        ventana_seleccion.geometry(f"+{x}+{y}")
+        
+        ctk.CTkLabel(
+            ventana_seleccion,
+            text="¿Qué deseas seleccionar?",
+            font=("Segoe UI", 14, "bold")
+        ).pack(pady=20)
+        
+        def seleccionar_carpeta():
+            ventana_seleccion.destroy()
+            ruta = filedialog.askdirectory(title="Selecciona la carpeta con los archivos")
+            if ruta:
+                self.path_origen = ruta
+                nombre_carpeta = os.path.basename(ruta)
+                archivos = self._obtener_archivos(ruta)
+                self.lbl_origen.configure(text=f"✓ Carpeta: {nombre_carpeta}", text_color=self.color_success)
+                self.lbl_contador.configure(text=f"{len(archivos)} archivo(s) encontrado(s)")
+        
+        def seleccionar_archivos():
+            ventana_seleccion.destroy()
+            archivos = filedialog.askopenfilenames(title="Selecciona los archivos que deseas mover")
+            if archivos:
+                self.path_origen = list(archivos)
+                cantidad = len(archivos)
+                self.lbl_origen.configure(text=f"✓ {cantidad} archivo(s) seleccionado(s)", text_color=self.color_success)
+                self.lbl_contador.configure(text=f"{cantidad} archivo(s) seleccionado(s)")
+        
+        ctk.CTkButton(
+            ventana_seleccion,
+            text="Seleccionar Carpeta Completa",
+            command=seleccionar_carpeta,
+            font=("Segoe UI", 12, "bold"),
+            height=40,
+            fg_color=self.color_primary,
+            hover_color="#3d6375"
+        ).pack(fill="x", padx=20, pady=10)
+        
+        ctk.CTkButton(
+            ventana_seleccion,
+            text="Seleccionar Archivos Individuales",
+            command=seleccionar_archivos,
+            font=("Segoe UI", 12, "bold"),
+            height=40,
+            fg_color=self.color_success,
+            hover_color="#4a7359"
+        ).pack(fill="x", padx=20, pady=10)
 
     def abrir_carpeta_origen(self):
         """Abre la carpeta de origen en el explorador"""
